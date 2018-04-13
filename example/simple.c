@@ -28,6 +28,21 @@ int main() {
 
 	jsmn_init(&p);
 	r = jsmn_parse(&p, JSON_STRING, strlen(JSON_STRING), t, sizeof(t)/sizeof(t[0]));
+
+#ifdef DEBUG_MODE
+	printf("\n modified by hyewon \n");
+        printf("\n<JSON_STRING>\n");
+        printf("%s",JSON_STRING);
+        printf("\n=============\n");
+#endif
+
+#ifdef DEBUG_MODE
+        for(i=0;i<r;i++){
+           printf("[%2d] (%d) %d~%d, size: %d\n",i,t[i].type,t[i].start,t[i].end                  ,t[i].size);
+                }
+#endif
+
+
 	if (r < 0) {
 		printf("Failed to parse JSON: %d\n", r);
 		return 1;
